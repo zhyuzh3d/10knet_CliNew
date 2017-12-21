@@ -1,8 +1,8 @@
 {
-    "name": "clinew",
-    "productName": "clinew",
-    "version": "1.0.0",
-    "description": "My Electron application description",
+    "name": "拾课网客户端",
+    "productName": "拾课网客户端",
+    "version": "0.0.1",
+    "description": "学习就要在一起！",
     "main": "src/index.js",
     "scripts": {
         "start": "electron-forge start",
@@ -12,7 +12,7 @@
         "lint": "eslint src --color"
     },
     "keywords": [],
-    "author": "zhyuz",
+    "author": "zhyuzh",
     "license": "MIT",
     "config": {
         "forge": {
@@ -29,10 +29,13 @@
                 ]
             },
             "electronPackagerConfig": {
-                "packageManager": "yarn"
+                "packageManager": "yarn",
+                "icon": "./src/icon/icon",
             },
             "electronWinstallerConfig": {
-                "name": "clinew"
+                "name": "拾课网客户端",
+                loadingGif:"",
+                iconUrl:"",
             },
             "electronInstallerDebian": {},
             "electronInstallerRedhat": {},
@@ -42,7 +45,7 @@
             },
             "windowsStoreConfig": {
                 "packageName": "",
-                "name": "clinew"
+                "name": "拾课网客户端"
             }
         }
     },
