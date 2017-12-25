@@ -1,5 +1,5 @@
 {
-    "name": "拾课网客户端",
+    "name": "10knetClient",
     "productName": "拾课网客户端",
     "version": "0.0.1",
     "description": "学习就要在一起！",
@@ -11,7 +11,7 @@
         "publish": "electron-forge publish",
         "lint": "eslint src --color"
     },
-    "keywords": [],
+    "keywords": [ ],
     "author": "zhyuzh",
     "license": "MIT",
     "config": {
@@ -30,15 +30,15 @@
             },
             "electronPackagerConfig": {
                 "packageManager": "yarn",
-                "icon": "./src/icon/icon",
+                "icon": "./src/icon/icon"
             },
             "electronWinstallerConfig": {
                 "name": "拾课网客户端",
-                loadingGif:"",
-                iconUrl:"",
+                "loadingGif": "",
+                "iconUrl": ""
             },
-            "electronInstallerDebian": {},
-            "electronInstallerRedhat": {},
+            "electronInstallerDebian": { },
+            "electronInstallerRedhat": { },
             "github_repository": {
                 "owner": "",
                 "name": ""
