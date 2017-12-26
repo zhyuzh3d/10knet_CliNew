@@ -1,9 +1,11 @@
-/*客户端0.0.1
+/*客户端0.0.11
+打包darwin版本，然后asar压缩拷贝成为win版本
  */
 
 import electron, {
     app,
     BrowserWindow,
+    globalShortcut,
 } from 'electron';
 
 import {
@@ -12,7 +14,6 @@ import {
 
 const EventEmitter = require('events').EventEmitter;
 const path = require('path');
-
 
 // 增加监听器上限
 const ee = new EventEmitter();
@@ -23,7 +24,6 @@ if(require('electron-squirrel-startup')) {
     app.quit();
 }
 
-
 // 保持主窗口，否则会被自动回收
 let mainWindow;
 const isDevMode = process.execPath.match(/[\\/]electron/);
@@ -32,7 +32,7 @@ if(isDevMode) {
         strategy: 'react-hmr',
     });
 }
-const host = isDevMode ? 'http://localhost:3000' : 'http://cli.10knet.com';
+const host = isDevMode ? 'http://localhost:3000' : 'https://cli.10knet.com';
 
 // 打开主窗口，载入桥接脚本
 const initMain = () => {
@@ -49,6 +49,8 @@ const initMain = () => {
         // alwaysOnTop: true,
         // frame:false,
         webPreferences: {
+            webSecurity: false,
+            allowRunningInsecureContent: true, //https和http混合模式
             nodeIntegration: true,
             preload: path.join(__dirname, 'preload/mainPreload.js'),
         },
@@ -59,9 +61,13 @@ const initMain = () => {
     mainWindow.loadURL(home);
 
     // 打开开发工具
-    if(isDevMode) {
-        mainWindow.webContents.openDevTools();
-    }
+    //if(isDevMode) {
+    //mainWindow.webContents.openDevTools();
+    //}
+
+
+
+
 
     // 窗口被关闭时候运行
     mainWindow.on('closed', () => {
@@ -109,3 +115,19 @@ app.on('activate', () => {
         initMain();
     }
 });
+
+//注册快捷键-显示窗口
+app.on('ready', () => {
+    globalShortcut.register('CommandOrControl+Alt+K', () => {
+        if(mainWindow) {
+            mainWindow.show();
+        } else {
+            initMain();
+        }
+    });
+    globalShortcut.register('CommandOrControl+Alt+I', () => {
+        if(mainWindow) {
+            mainWindow.webContents.openDevTools();
+        }
+    });
+})
