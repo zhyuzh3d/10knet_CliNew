@@ -60,15 +60,6 @@ const initMain = () => {
     const home = `${host}?pageName=MainHomePage`;
     mainWindow.loadURL(home);
 
-    // 打开开发工具
-    //if(isDevMode) {
-    //mainWindow.webContents.openDevTools();
-    //}
-
-
-
-
-
     // 窗口被关闭时候运行
     mainWindow.on('closed', () => {
         // 如果有多个窗口都应关闭
@@ -99,6 +90,7 @@ ipcMain.on('send', (event, arg) => {
 // 应用就绪后运行
 app.on('ready', () => {
     initMain();
+    mainWindow.maximize();
 });
 
 // 当所有窗口关闭时退出
